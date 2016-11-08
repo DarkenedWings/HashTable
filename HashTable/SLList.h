@@ -29,7 +29,31 @@ public:
 	//Assignmet Operator
 	SLList<Type>& operator=(const SLList<Type>& that)
 	{
-		head = that.head;
+		if (&that != nullptr)
+		{
+			if (this != &that)
+			{
+				clear();
+				Node* temp = new Node;
+				Node* temp2 = new Node;
+				head = new Node;
+				head->data = that.head->data;
+				temp = head;
+				temp2 = that.head->next;
+				Size = 1;
+				while (temp2 != nullptr)
+				{
+					temp->next = new Node;
+					temp->next->data = temp2->data;
+					temp = temp->next;
+					temp->next = nullptr;
+					temp2 = temp2->next;
+					Size++;
+				}
+			}
+			head = that.head;
+			Size = that.Size;
+		}
 		return *this;
 	}
 

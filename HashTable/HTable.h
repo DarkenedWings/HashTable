@@ -27,11 +27,18 @@ public:
 	//Assignment Operator
 	HTable<Type>& operator=(const HTable<Type>& that)
 	{
-		delete[] table;
-		table = new SLList<Type>[that.buckets];
-		for (unsigned int i = 0; i < buckets; ++i)
-			table[i] = that.table[i];
-		hFunction = that.hFunction;
+		if (this != &that)
+		{
+			delete[] table;
+			table = new SLList<Type>[that.buckets];
+			buckets = that.buckets;
+			for (unsigned int i = 0; i < buckets; ++i)
+			{
+				table[i] = that.table[i];
+				//table[i]->Size = that.table[i]->Size;
+			}
+			hFunction = that.hFunction;
+		}
 		return *this;
 	}
 
