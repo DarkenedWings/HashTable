@@ -29,7 +29,7 @@ public:
 	//Assignmet Operator
 	SLList<Type>& operator=(const SLList<Type>& that)
 	{
-		if (&that != nullptr)
+		if (that.head != nullptr)
 		{
 			if (this != &that)
 			{
